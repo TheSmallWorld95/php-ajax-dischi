@@ -7,7 +7,31 @@
   \************************/
 /***/ (() => {
 
+Vue.config.devtools = true; // BONUS
+// Creare una select con tutti i generi dei dischi. In base a cosa scegliamo nella select, vedremo i corrispondenti cd.
+// BONUS 2
+// Ordinare i dischi per anno di uscita.
 
+var app = new Vue({
+  el: "#root",
+  data: {
+    liveRecords: [],
+    index: 0
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("http://localhost/PHP/PhpDischi/php-ajax-dischi/php/dischi.php").then(function (response) {
+      console.log(response.data);
+      _this.liveRecords = response.data;
+    });
+  },
+  methods: {
+    active: function active(index) {
+      this.index = index;
+    }
+  }
+});
 
 /***/ }),
 
